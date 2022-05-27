@@ -1,10 +1,17 @@
 <apex:page>
     <script>
+
+        // Use the $MessageChannel global variable to retrieve a reference to the channel
         let msgChannel = "{!$MessageChannel.myChannel__c}";
+
+        // We can subscribe at any time, I subscribe ASAP here
         window.onload = () => {
+
+            // sforce.one is a variable accessible in Visualforce that has our message channel methods
             sforce.one.subscribe(msgChannel, onPublish);
         }
 
+        // Callback function to handle a new post to a channel
         function onPublish(message) {
             const msg = document.querySelector("#message");
             const from = document.querySelector("#from");
@@ -12,6 +19,7 @@
             from.innerHTML = message.from;
         }
 
+        // Posts a static message to the channel
         function onPost() {
             const data = { myMessage: 'Visualforce is outdated!', from: 'Visualforce' };
             sforce.one.publish(msgChannel, data);

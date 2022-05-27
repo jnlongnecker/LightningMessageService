@@ -1,11 +1,24 @@
+<!--
+    Created by: Jared Longnecker
+    Last modified: 5/27/2022
+    Description: Aura Component to showcase communication between UI frameworks using LMS
+-->
+
 <aura:component implements="flexipage:availableForAllPageTypes">
+
+    <!-- The key here is this messageChannel component. This does all the magic -->
     <lightning:messageChannel aura:id="msgChannel" type="myChannel__c" onMessage="{!c.handleMessage}"
         scope="APPLICATION" />
+
     <aura:attribute name="message" type="String" default="No Message Yet" />
     <aura:attribute name="from" type="String" default="No Message Yet" />
 
     <lightning:layout>
         <lightning:layoutItem flexibility="auto">
+            <!-- 
+                Including the web component in the Aura component is not necessary! It is done here
+                ONLY for formatting purposes for the Lightning App Page
+            -->
             <c:messageService></c:messageService>
         </lightning:layoutItem>
         <lightning:layoutItem flexibility="auto">

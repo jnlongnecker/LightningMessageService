@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Definition of a message channel. No easy way to do these, so modify this file to suit your needs -->
 <LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
     <masterLabel>myChannel</masterLabel>
     <isExposed>true</isExposed>
