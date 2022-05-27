@@ -1,0 +1,32 @@
+<apex:page>
+    <script>
+        let msgChannel = "{!$MessageChannel.myChannel__c}";
+        window.onload = () => {
+            sforce.one.subscribe(msgChannel, onPublish);
+        }
+
+        function onPublish(message) {
+            const msg = document.querySelector("#message");
+            const from = document.querySelector("#from");
+            msg.innerHTML = message.myMessage;
+            from.innerHTML = message.from;
+        }
+
+        function onPost() {
+            const data = { myMessage: 'Visualforce is outdated!', from: 'Visualforce' };
+            sforce.one.publish(msgChannel, data);
+        }
+    </script>
+
+    <apex:slds />
+    <div style="display:flex; justify-content:center;">
+        <div>
+            <p class="slds-text-heading_medium">Message discovered from LMS:</p>
+            <p id="message">No Message Yet</p>
+
+            <p class="slds-m-top_medium slds-text-heading_medium">UI Framework that sent the message:</p>
+            <p id="from">No Message Yet</p>
+            <button class="slds-button slds-button_neutral" onclick="onPost()">Send Message</button>
+        </div>
+    </div>
+</apex:page>

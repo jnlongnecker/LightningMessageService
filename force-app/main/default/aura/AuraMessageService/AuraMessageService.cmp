@@ -1,0 +1,26 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <lightning:messageChannel aura:id="msgChannel" type="myChannel__c" onMessage="{!c.handleMessage}"
+        scope="APPLICATION" />
+    <aura:attribute name="message" type="String" default="No Message Yet" />
+    <aura:attribute name="from" type="String" default="No Message Yet" />
+
+    <lightning:layout>
+        <lightning:layoutItem flexibility="auto">
+            <c:messageService></c:messageService>
+        </lightning:layoutItem>
+        <lightning:layoutItem flexibility="auto">
+            <lightning:card title="Aura Component">
+                <aura:set attribute="actions">
+                    <lightning:button label="Send Message" onclick="{!c.handlePost}"></lightning:button>
+                </aura:set>
+                <div class="slds-p-horizontal_large">
+                    <p class="slds-text-heading_medium">Message discovered from LMS:</p>
+                    <lightning:formattedText value="{!v.message}"></lightning:formattedText>
+
+                    <p class="slds-m-top_medium slds-text-heading_medium">UI Framework that sent the message:</p>
+                    <lightning:formattedText value="{!v.from}"></lightning:formattedText>
+                </div>
+            </lightning:card>
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

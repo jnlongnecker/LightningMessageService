@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Lightning Web Component">
+        <lightning-button slot="actions" label="Send Message" onclick={postMessage}></lightning-button>
+        <div class="slds-p-horizontal_large">
+            <p class="slds-text-heading_medium">Message discovered from LMS:</p>
+            <lightning-formatted-text value={messageServiceMessage}></lightning-formatted-text>
+
+            <p class="slds-m-top_medium slds-text-heading_medium">UI Framework that sent the message:</p>
+            <lightning-formatted-text value={messageCameFrom}></lightning-formatted-text>
+        </div>
+    </lightning-card>
+</template>
